@@ -9,15 +9,15 @@ from importlib import util as importutil
 
 def check_path(path):
     """Check existing of path."""
-    if path == '':
-        path = '.'
+    if not path:
+        path = os.getcwd()
     return os.path.exists(path)
 
 
 def find_files(path):
     """Find and return python test files in path."""
-    if path == '':
-        path = '.'
+    if not path:
+        path = os.getcwd()
     return glob.glob('{path}/test_*.py'.format(path=path))
 
 

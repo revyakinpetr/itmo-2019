@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """Tests for testing runtest."""
+import os
+
 from runtests import check_path, find_files, run_tests
 
 
@@ -12,16 +14,18 @@ def test_check_path():
 
 def test_files_list():
     """Test finding test files in directory."""
-    test_result = [r'.\test_framework.py', r'.\test_one.py', r'.\test_two.py']
-    assert find_files('') == test_result  # noqa: S101
-    assert find_files(r'C:\itmo\4kusr\7sem') == []  # noqa: WPS520, S101
+    current_dir = os.getcwd()
+    test_result = [
+        r'{0}\test_framework.py'.format(current_dir),
+        r'{0}\test_one.py'.format(current_dir),
+        r'{0}\test_two.py'.format(current_dir),
+    ]
+    assert test_result == find_files('')  # noqa: S101
 
 
 def test_run_tests():
     """Test executing test."""
     test_result = 'test_one.py test_mult - ok\n'
-    assert test_result in run_tests('test_one.py')  # noqa: S101
+    assert test_result in run_tests(r'.\test_one.py')  # noqa: S101
     test_result = 'test_two.py test_mult - fail\nTraceback'
-    assert test_result in run_tests('test_two.py')  # noqa: S101
-    test_result = 'test_three.py test_mult - fail\nTraceback'
-    assert test_result in run_tests('C:/itmo/4kusr/7sem/web/test_three.py')  # noqa: S101, E501
+    assert test_result in run_tests(r'.\test_two.py')  # noqa: S101
