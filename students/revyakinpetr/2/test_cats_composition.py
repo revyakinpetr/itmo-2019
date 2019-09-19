@@ -4,7 +4,7 @@ import glob
 import os
 import unittest
 
-import cats_composition
+from itmo.second import cats_composition
 
 
 class TestCatsComposition(unittest.TestCase):

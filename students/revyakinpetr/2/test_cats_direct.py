@@ -4,7 +4,12 @@ import unittest
 
 from urllib3.response import HTTPResponse
 
-import cats_direct
+from itmo.second.cats_direct import (
+    create_parser,
+    fetch_cat_fact,
+    fetch_cat_image,
+    save_cat,
+)
 
 
 class TestCatsDirect(unittest.TestCase):
@@ -13,13 +18,13 @@ class TestCatsDirect(unittest.TestCase):
     def test_parse_args(self):
         """Test parse arguments."""
         test_args = ['--count', '4']
-        parse_result = cats_direct.create_parser().parse_args(test_args)
+        parse_result = create_parser().parse_args(test_args)
         self.assertEqual(parse_result.count, int(test_args[1]))
 
     def test_fetch_cat_fact(self):
         """Test fatch cat fact."""
         try:
-            cats_fact = cats_direct.fetch_cat_fact()
+            cats_fact = fetch_cat_fact()
         except Exception:
             self.fail('HTTP fail')
 
@@ -30,7 +35,7 @@ class TestCatsDirect(unittest.TestCase):
         """Test fatch cat image."""
         image_formats = ['jpg', 'jpeg', 'gif', 'png']
         try:
-            cat_image = cats_direct.fetch_cat_image()
+            cat_image = fetch_cat_image()
         except Exception:
             self.fail('HTTP fail')
 
@@ -47,7 +52,7 @@ class TestCatsDirect(unittest.TestCase):
         test_image_path = format_image_path.format(*test_image_name)
 
         with open(test_image_path, 'rb') as test_image:
-            cats_direct.save_cat(
+            save_cat(
                 index=test_index,
                 fact=test_fact,
                 image=(test_image_name[1], test_image),
