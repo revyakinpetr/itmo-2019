@@ -43,7 +43,7 @@ class TestCatsDirect(unittest.TestCase):
         test_index = 4
         test_fact = 'test fact'
         test_image_name = ['test_cat_image', 'jpg']
-        format_image_path = r'students\revyakinpetr\2\{0}.{1}'
+        format_image_path = 'students/revyakinpetr/2/{0}.{1}'
         test_image_path = format_image_path.format(*test_image_name)
 
         with open(test_image_path, 'rb') as test_image:
