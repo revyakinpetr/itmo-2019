@@ -42,7 +42,7 @@ def ls_fixture(request):
     (TESTTXT, False, True),
     ('тест.txt', False, True),
     (TESTTXT, True, True),
-    ('***.txt', False, False),
+    ('оши<ка.txt', False, False),
 ])
 def mk_fixture(request):
     """Fixture for mk."""
@@ -75,7 +75,7 @@ def rm_fixture(request):
 
 @pytest.fixture(scope=SCOPE, params=[
     ('тест.txt', ['code: 0']),
-    (TESTTXT, ['code: 1']),
+    ('wrong.txt', ['code: 1']),
     ('testdir', ['code: 1']),
 ])
 def contains_fixture(request):
