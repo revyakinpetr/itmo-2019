@@ -16,7 +16,7 @@ def ls(pathname):
     """Command ls."""
     if pathname == '':
         pathname = '.'
-    return os.listdir(pathname)
+    return set(os.listdir(pathname))  # noqa: C405
 
 
 def mk(filename):
@@ -61,16 +61,16 @@ def since(date, path='.'):
     try:
         date = datetime.strptime(date, '%d-%m-%Y')
     except Exception:
-        return []
+        return set([])  # noqa: C405
     if os.path.isdir(path):
         listdir = os.listdir(path)
-        return [
+        return set([  # noqa: C403
             itm for itm in listdir
             if date < datetime.fromtimestamp(
                 os.path.getctime('{0}/{1}'.format(path, itm)),
             )
-        ]
-    return []
+        ])
+    return set([])  # noqa: C405
 
 
 def main():

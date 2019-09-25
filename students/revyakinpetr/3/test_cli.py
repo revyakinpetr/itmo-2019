@@ -9,7 +9,7 @@ from cli import ls, mk, rm, contains, since  # noqa: I001
 def test_ls(ls_fixture):
     """Testing ls command."""
     pathname, test_list = ls_fixture
-    assert ls(pathname) == test_list
+    assert ls(pathname) == set(test_list)  # noqa: C405
 
 
 def test_mk(mk_fixture):
@@ -37,7 +37,7 @@ def test_contains(contains_fixture):
 def test_since(since_fixture):
     """Testing since command."""
     path, date, test_list = since_fixture
-    assert since(date, path) == test_list
+    assert since(date, path) == set(test_list)  # noqa: C405
 
 
 def test_integration(integration_fixture):

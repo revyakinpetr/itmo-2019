@@ -17,10 +17,10 @@ def create_file(filename):
 
 
 @pytest.fixture(scope=SCOPE, params=[
-    ('empty', []),
-    ('files', [TESTTXT]),
-    ('directories', [TEST]),
-    ('files_directories', [TEST, TESTTXT]),
+    ('ls_empty', []),
+    ('ls_files', [TESTTXT]),
+    ('ls_directories', [TEST]),
+    ('ls_files_directories', [TEST, TESTTXT]),
 ])
 def ls_fixture(request):
     """Fixture for ls."""
@@ -91,11 +91,11 @@ def contains_fixture(request):
 
 
 @pytest.fixture(scope=SCOPE, params=[
-    ('empty', TESTDATE, []),
-    ('files', TESTDATE, [TESTTXT]),
-    ('directories_files', TESTDATE, [TEST, TESTTXT]),
-    ('directories', TESTDATE, [TEST]),
-    ('empty', '33-33-3333', []),
+    ('since_empty', TESTDATE, []),
+    ('since_files', TESTDATE, [TESTTXT]),
+    ('since_directories_files', TESTDATE, [TEST, TESTTXT]),
+    ('since_directories', TESTDATE, [TEST]),
+    ('since_empty', '33-33-3333', []),
 ])
 def since_fixture(request):
     """Fixture for since."""
