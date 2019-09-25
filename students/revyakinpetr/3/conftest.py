@@ -42,7 +42,7 @@ def ls_fixture(request):
     (TESTTXT, False, True),
     ('тест.txt', False, True),
     (TESTTXT, True, True),
-    ('оши<ка.txt', False, False),
+    ('ошиб..чка.txt', False, False),
 ])
 def mk_fixture(request):
     """Fixture for mk."""
