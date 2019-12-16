@@ -5,7 +5,12 @@ import shutil
 import subprocess  # noqa: S404
 import unittest
 
-import cats_direct_rpa
+from cats_direct_rpa import (
+    create_parser,
+    fetch_cat_fact,
+    fetch_cat_image,
+    save_cat,
+)
 
 
 class TestCatsDirect(unittest.TestCase):  # noqa: WPS230
@@ -34,13 +39,13 @@ class TestCatsDirect(unittest.TestCase):  # noqa: WPS230
 
     def test_parse_args(self):
         """Test parse arguments."""
-        parse_result = cats_direct_rpa.create_parser().parse_args(self.args)
+        parse_result = create_parser().parse_args(self.args)
         assert parse_result.count == int(self.args[1])
 
     def test_fetch_cat_fact(self):
         """Test fatch cat fact."""
         try:
-            cats_fact = cats_direct_rpa.fetch_cat_fact()
+            cats_fact = fetch_cat_fact()
         except Exception:
             self.fail(self.http_error_text)
 
@@ -49,7 +54,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa: WPS230
     def test_fetch_cat_image(self):
         """Test fatch cat image."""
         try:
-            cat_image = cats_direct_rpa.fetch_cat_image()
+            cat_image = fetch_cat_image()
         except Exception:
             self.fail(self.http_error_text)
 
@@ -61,7 +66,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa: WPS230
         assert os.path.isfile(self.save_params['image_path'])
 
         with open(self.save_params['image_path'], 'rb') as test_image:
-            cats_direct_rpa.save_cat(
+            save_cat(
                 index=self.save_params['index'],
                 fact=self.save_params['fact'],
                 image=(self.image_name[1], test_image),

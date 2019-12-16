@@ -5,7 +5,8 @@ import shutil
 import subprocess  # noqa: S404
 import unittest
 
-import cats_composition_rpa
+from cats_composition_rpa import CatProcessor, main
+from cats_direct_rpa import fetch_cat_fact, fetch_cat_image, save_cat
 
 
 class TestCatsComposition(unittest.TestCase):
@@ -26,17 +27,17 @@ class TestCatsComposition(unittest.TestCase):
 
     def test_main(self):
         """Test main function."""
-        cat_processor = cats_composition_rpa.CatProcessor(
-            fetch_text=cats_composition_rpa.fetch_cat_fact,
-            fetch_image=cats_composition_rpa.fetch_cat_image,
-            process_text_and_image=cats_composition_rpa.save_cat,
+        cat_processor = CatProcessor(
+            fetch_text=fetch_cat_fact,
+            fetch_image=fetch_cat_image,
+            process_text_and_image=save_cat,
         )
 
         fact_path = '{0}/cat_{1}_fact.txt'.format(self.temp, self.index)
         if os.path.exists(fact_path):
             os.remove(fact_path)
 
-        cats_composition_rpa.main(
+        main(
             self.index,
             process_cat=cat_processor,
             show_information=print,  # noqa: T002
