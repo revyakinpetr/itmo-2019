@@ -35,6 +35,7 @@ def fetch_cat_fact(debug: bool = False) -> str:
 
     >>> fetch_cat_fact(debug=True)
     'On debug.'
+
     """
     if debug:
         return 'On debug.'

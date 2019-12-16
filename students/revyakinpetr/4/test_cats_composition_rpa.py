@@ -42,13 +42,13 @@ class TestCatsComposition(unittest.TestCase):
             show_information=print,  # noqa: T002
         )
 
-        self.assertTrue(os.path.exists(fact_path))
+        assert os.path.exists(fact_path)
 
     def test_integration(self):
         """Integration test."""
         str_command = self.str_format.format(self.integration_arg)
         subprocess_res = subprocess.call(str_command, shell=True)  # noqa: S602, E501
-        self.assertEqual(subprocess_res, 0)
+        assert subprocess_res == 0
 
 
 if __name__ == '__main__':
