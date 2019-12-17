@@ -10,7 +10,8 @@ from runtests_rpa import (
     get_tests,
 )
 
-FILENAME = r'.\test_framework_rpa.py'
+CURRENT_DIR = os.getcwd()
+FILENAME = r'{0}\test_framework_rpa.py'.format(CURRENT_DIR)
 
 
 def test_files_list():
