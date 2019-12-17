@@ -7,6 +7,8 @@ import shutil
 import subprocess  # noqa: S404
 import unittest
 
+import pytest
+
 from cats_composition_rpa import CatProcessor, main
 from cats_direct_rpa import fetch_cat_fact, fetch_cat_image, save_cat
 
@@ -27,6 +29,7 @@ class TestCatsComposition(unittest.TestCase):
         """Tear down test case."""
         shutil.rmtree(self.temp)
 
+    @pytest.mark.remote_data
     def test_main(self):
         """Test main function."""
         cat_processor = CatProcessor(

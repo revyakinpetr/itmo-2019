@@ -7,6 +7,8 @@ import shutil
 import subprocess  # noqa: S404
 import unittest
 
+import pytest
+
 from cats_direct_rpa import (
     create_parser,
     fetch_cat_fact,
@@ -44,6 +46,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa: WPS230
         parse_result = create_parser().parse_args(self.args)
         assert parse_result.count == int(self.args[1])
 
+    @pytest.mark.remote_data
     def test_fetch_cat_fact(self):
         """Test fatch cat fact."""
         try:
@@ -53,6 +56,7 @@ class TestCatsDirect(unittest.TestCase):  # noqa: WPS230
 
         assert cats_fact
 
+    @pytest.mark.remote_data
     def test_fetch_cat_image(self):
         """Test fatch cat image."""
         try:

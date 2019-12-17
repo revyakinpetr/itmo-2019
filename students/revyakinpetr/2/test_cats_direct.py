@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import unittest
 
 from urllib3.response import HTTPResponse
@@ -45,6 +46,10 @@ class TestCatsDirect(unittest.TestCase):
 
     def test_save_cat(self):  # noqa: WPS210
         """Test save cat fact and image."""
+        temp = 'temp'
+        if not os.path.exists(temp):
+            os.mkdir(temp)
+
         test_index = 4
         test_fact = 'test fact'
         test_image_name = ['test_cat_image', 'jpg']
