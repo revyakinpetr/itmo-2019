@@ -11,7 +11,7 @@ from runtests_rpa import (
 )
 
 CURRENT_DIR = os.getcwd()
-FILENAME = r'{0}/students/revyakinpetr/1/test_framework_rpa.py'.format(CURRENT_DIR)
+FILENAME = r'{0}/students/revyakinpetr/1/test_framework_rpa.py'.format(CURRENT_DIR)  # noqa: E501
 
 
 def test_files_list():
