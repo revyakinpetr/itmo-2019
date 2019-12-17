@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+
 from runtests_rpa import (
     exec_test,
     find_files,
@@ -8,12 +10,13 @@ from runtests_rpa import (
     get_tests,
 )
 
-FILENAME = r'.\test_framework.py'
+FILENAME = r'.\test_framework_rpa.py'
 
 
 def test_files_list():
     """Test files list."""
-    assert find_files('') == ['.\\test_framework.py']  # noqa: WPS342
+    path = os.getcwd()
+    assert find_files('') == ['{0}\\test_framework_rpa.py'.format(path)]  # noqa: WPS342, E501
     assert find_files('C:\\itmo\\4kusr\\7sem') == []  # noqa: WPS342, WPS520
 
 
@@ -35,7 +38,6 @@ def test_get_tests():
     test_module = get_test_module(module_spec)
     tests = get_tests(module_spec, test_module)
     assert tests == [
-        'test_check_path',
         'test_exec_test',
         'test_files_list',
         'test_get_tests',
@@ -48,5 +50,5 @@ def test_exec_test():
     """Test exec test."""
     module_spec = get_module_spec(FILENAME)
     test_module = get_test_module(module_spec)
-    test_name = get_tests(module_spec, test_module)[0]
+    test_name = get_tests(module_spec, test_module)[1]
     assert exec_test(test_name, test_module) == 'ok'

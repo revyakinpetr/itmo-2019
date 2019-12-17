@@ -19,8 +19,8 @@ def find_files(path):
         List of files.
 
     """
-    if path == '':
-        path = '.'
+    if not path:
+        path = os.getcwd()
     if os.path.exists(path):
         return glob.glob(TEST_PATH_FORMAT.format(path=path))
     return []
