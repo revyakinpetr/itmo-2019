@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# type: ignore  # noqa: E800
+
 import argparse
 import shutil
 from typing import Tuple

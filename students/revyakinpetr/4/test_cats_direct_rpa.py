@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# type: ignore  # noqa: E800
+
 import os
 import shutil
 import subprocess  # noqa: S404
