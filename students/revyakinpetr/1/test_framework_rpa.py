@@ -11,12 +11,14 @@ from runtests_rpa import (
 )
 
 CURRENT_DIR = os.getcwd()
-FILENAME = r'{0}/students/revyakinpetr/1/test_framework_rpa.py'.format(CURRENT_DIR)  # noqa: E501
+MY_DIR = '/students/revyakinpetr/1/'
+FILENAME = r'{0}{1}test_framework_rpa.py'.format(CURRENT_DIR, MY_DIR)  # noqa: E501
 
 
 def test_files_list():
     """Test files list."""
-    assert find_files('') == [FILENAME]  # noqa: WPS342
+    assert find_files('') == []  # noqa: WPS342, WPS520
+    assert find_files('{0}{1}'.format(CURRENT_DIR, MY_DIR)) == [FILENAME]  # noqa: WPS34, E501
     assert find_files('C:\\itmo\\4kusr\\7sem') == []  # noqa: WPS342, WPS520
 
 
